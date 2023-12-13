@@ -1,8 +1,40 @@
-<p>guardar-personas works!</p>
 
-<input type="text" #cve>
-<button (click)="findUser(cve.value)">Conslutar usuario</button>
-<br>
-<button (click)="saveUser()">Guardar</button>
-
-{{nombre}}
+<div class="container mt-4">
+    <h2>Guardar Personas</h2>
+  
+    <form [formGroup]="userForm" *ngIf="userForm" class="mt-4">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        <div *ngIf="userForm.get('nombre')?.invalid && userForm.get('nombre')?.touched" class="text-danger">
+          Nombre es requerido.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
+        <input type="text" class="form-control" id="apellidoPaterno" formControlName="apellidoPaterno">
+        <div *ngIf="userForm.get('apellidoPaterno')?.invalid && userForm.get('apellidoPaterno')?.touched" class="text-danger">
+          Apellido Paterno es requerido.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="identificacion" class="form-label">Identificación</label>
+        <input type="text" class="form-control" id="identificacion" formControlName="identificacion">
+        <div *ngIf="userForm.get('identificacion')?.invalid && userForm.get('identificacion')?.touched" class="text-danger">
+          Identificación es requerida y debe ser un número.
+        </div>
+      </div>
+  
+      <button type="button" class="btn btn-primary" (click)="findUser(userForm.get('identificacion')?.value)">Consultar Usuario</button>
+      <br>
+  
+      <button type="button" class="btn btn-success mt-3" (click)="saveUser()">Guardar</button>
+    </form>
+  
+    <div class="mt-4" *ngIf="nombre">
+      <p>Usuario consultado: {{ nombre }}</p>
+    </div>
+  </div>
+  
