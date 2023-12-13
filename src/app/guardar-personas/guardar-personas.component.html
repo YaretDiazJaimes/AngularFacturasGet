@@ -19,6 +19,14 @@
           Apellido Paterno es requerido.
         </div>
       </div>
+      
+      <div class="mb-3">
+        <label for="apellidoMaterno" class="form-label">Apellido Materno</label>
+        <input type="text" class="form-control" id="apellidoMaterno" formControlName="apellidoMaterno">
+        <div *ngIf="userForm.get('apellidoMaterno')?.invalid && userForm.get('apellidoMaterno')?.touched" class="text-danger">
+          Apellido Materno es requerido.
+        </div>
+      </div>
   
       <div class="mb-3">
         <label for="identificacion" class="form-label">Identificación</label>

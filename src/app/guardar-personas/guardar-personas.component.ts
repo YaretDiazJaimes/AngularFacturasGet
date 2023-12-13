@@ -28,6 +28,7 @@ export class GuardarPersonasComponent implements OnInit {
     this.userForm = this.fb.group({
       nombre: ['', Validators.required],
       apellidoPaterno: ['', Validators.required],
+      apellidoMaterno: ['', Validators.required],
       identificacion: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
     });
   
@@ -53,13 +54,10 @@ export class GuardarPersonasComponent implements OnInit {
         (response: any) => {
           console.log(response);
           this.nombre = response.nombre;
-          // Puedes limpiar el formulario después de guardar exitosamente si lo deseas
+    
           this.userForm.reset();
         },
-        (err: any) => {
-          console.log(err);
-          alert("Ocurrió un error al guardar el usuario");
-        }
+        
       );
     }
   }
